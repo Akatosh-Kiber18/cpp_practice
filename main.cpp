@@ -1,20 +1,56 @@
 #include <iostream>
 
-int calculateArea(int width, int height)
+double convertTemperature(int temperature, int convertingFlag)
 {
-    return width * height;
+    if (convertingFlag == 1)
+    {
+        return static_cast<double>(temperature) * 1.8 + 32.0;
+    }
+    else
+    {
+        return (static_cast<double>(temperature) - 32.0) / 1.8;
+    }
 }
 
 int main()
 {
-    std::string a, b;
+    int convertingFlag;
+    int temperature;
 
-    a = "Hello";
-    b = "There";
+    std::cout << "Hey there! I can convert temperature for you." << std::endl;
+    std::cout << "Here are your options: \n" << std::endl;
+    std::cout << "0 - Convert from Fahrenheit to Celsius (ºF to ºC)" << std::endl;
+    std::cout << "1 - Convert from Celsius to Fahrenheit (ºC to ºF)\n" << std::endl;
 
-    std::string c = a + b;
+    std::cin >> convertingFlag;
+    int attempts = 3;
 
-    std::cout << c << std::endl;
+    while (attempts > 0 && (convertingFlag != 0 && convertingFlag != 1))
+    {
+        std::cout << "You entered an invalid option. Please try again:" << std::endl;
+        std::cin >> convertingFlag;
+        attempts--;
+    }
+
+    if (attempts == 0)
+    {
+        std::cout << "Exceeded maximum attempts. Exiting." << std::endl;
+        return 1;
+    }
+
+    std::cout << "Enter the temperature value: " << std::endl;
+    std::cin >> temperature;
+
+    if (convertingFlag == 0)
+    {
+        double result = convertTemperature(temperature, 0);
+        std::cout << "Temperature in Celsius (ºC): " << result << std::endl;
+    }
+    else
+    {
+        double result = convertTemperature(temperature, 1);
+        std::cout << "Temperature in Fahrenheit (ºF): " << result << std::endl;
+    }
 
     return 0;
 }
