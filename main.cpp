@@ -3,17 +3,33 @@
 #include <vector>
 #include <sstream>
 
-double add(double value1, double value2);
+class Calculator {
+public:
+    //Here we use default class constructor. Also, we can delete the line 9. But for better understanding I left this bellow.
+    Calculator() = default;
 
-double subtraction(double value1, double value2);
+    double add(double value1, double value2) {
+        return value1 + value2;
+    }
 
-double multiplication(double value1, double value2);
+    double subtraction(double value1, double value2) {
+        return value1 - value2;
+    }
 
-double division(double value1, double value2);
+    double multiplication(double value1, double value2) {
+        return value1 * value2;
+    }
+
+    double division(double value1, double value2) {
+        return value1 / value2;
+    }
+};
 
 std::vector<std::string> splitString(const std::string &line, char symbol);
 
 int main() {
+
+    Calculator calculator;
 
     std::string line;
     char symbol;
@@ -25,41 +41,25 @@ int main() {
         symbol = '+';
         inputParts = splitString(line, symbol);
 
-        std::cout << add(std::stod(inputParts[0]), std::stod(inputParts[1]));
+        std::cout << calculator.add(std::stod(inputParts[0]), std::stod(inputParts[1]));
     } else if (line.find('-') != std::string::npos) {
         symbol = '-';
         inputParts = splitString(line, symbol);
 
-        std::cout << subtraction(std::stod(inputParts[0]), std::stod(inputParts[1]));
+        std::cout << calculator.subtraction(std::stod(inputParts[0]), std::stod(inputParts[1]));
     } else if (line.find('*') != std::string::npos) {
         symbol = '*';
         inputParts = splitString(line, symbol);
 
-        std::cout << multiplication(std::stod(inputParts[0]), std::stod(inputParts[1]));
+        std::cout << calculator.multiplication(std::stod(inputParts[0]), std::stod(inputParts[1]));
     } else if (line.find('/') != std::string::npos) {
         symbol = '/';
         inputParts = splitString(line, symbol);
 
-        std::cout << division(std::stod(inputParts[0]), std::stod(inputParts[1]));
+        std::cout << calculator.division(std::stod(inputParts[0]), std::stod(inputParts[1]));
     }
 
     return 0;
-}
-
-double add(double value1, double value2) {
-    return value1 + value2;
-}
-
-double subtraction(double value1, double value2) {
-    return value1 - value2;
-}
-
-double multiplication(double value1, double value2) {
-    return value1 * value2;
-}
-
-double division(double value1, double value2) {
-    return value1 / value2;
 }
 
 std::vector<std::string> splitString(const std::string &line, char symbol) {
