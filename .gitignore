@@ -2,6 +2,7 @@
 
 !.gitignore
 !main.cpp
-!thread_lesson.cpp
 !TimestampCalculator.cpp
 !monte_carlo.cpp
+!thread_lesson.cpp
+!thread_lesson2.cpp
